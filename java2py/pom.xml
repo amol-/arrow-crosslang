@@ -1,0 +1,39 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>org.apache.arrow.py2java</groupId>
+  <artifactId>FillTen</artifactId>
+  <version>1</version>
+
+    <properties>
+         <maven.compiler.source>1.7</maven.compiler.source>
+         <maven.compiler.target>1.7</maven.compiler.target>
+    </properties> 
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.arrow</groupId>
+      <artifactId>arrow-memory</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.arrow</groupId>
+      <artifactId>arrow-memory-netty</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.arrow</groupId>
+      <artifactId>arrow-vector</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
+      <type>pom</type>
+    </dependency> 
+    <dependency>
+      <groupId>org.apache.arrow</groupId>
+      <artifactId>arrow-c-data</artifactId>
+      <version>6.0.0-SNAPSHOT</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+</project>
