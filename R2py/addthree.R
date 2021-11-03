@@ -1,8 +1,4 @@
 library(arrow)
-# library(reticulate)
-# pa <- import("pyarrow")
-
-# a <- Array$create(c(1, 2, 3))
 
 addthree <- function(array_ptr_s, schema_ptr_s) {
   array_ptr <- as.numeric(array_ptr_s)
