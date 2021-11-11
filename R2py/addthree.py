@@ -3,7 +3,7 @@ import rpy2.robjects as robjects
 r_source = robjects.r["source"]
 r_source("addthree.R")
 
-addthree = robjects.r["addthree"]
+addthree = robjects.r["addthree_cdata"]
 
 import pyarrow
 
@@ -24,4 +24,4 @@ with arrow_c.new("struct ArrowArray*") as c_array, \
     r_result["export_to_c"](float(c_array_ptr), float(c_schema_ptr))
 
     py_result = pyarrow.Array._import_from_c(c_array_ptr, c_schema_ptr)
-    print("RESULT", py_result)
+print("RESULT", py_result)
