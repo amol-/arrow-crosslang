@@ -16,7 +16,4 @@ with localconverter(arrowconverter):
     r_result = addthree(array)
 
 py_result = rarrow_to_py_array(r_result)
-
-# r_result["export_to_c"](float(c_array_ptr), float(c_schema_ptr))
-# py_result = pyarrow.Array._import_from_c(c_array_ptr, c_schema_ptr)
 print("RESULT", type(py_result), py_result)
