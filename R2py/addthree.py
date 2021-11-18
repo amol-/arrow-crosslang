@@ -1,27 +1,22 @@
 import rpy2.robjects as robjects
+from rpy2_arrow.pyarrow_rarrow import rarrow_to_py_array, converter as arrowconverter
+from rpy2.robjects.conversion import localconverter
 
 r_source = robjects.r["source"]
 r_source("addthree.R")
 
-addthree = robjects.r["addthree_cdata"]
+addthree = robjects.r["addthree"]
 
 import pyarrow
 
 array = pyarrow.array((1, 2, 3))
 print("PYTHON ARRAY", array)
 
-from pyarrow.cffi import ffi as arrow_c
+with localconverter(arrowconverter):
+    r_result = addthree(array)
 
-with arrow_c.new("struct ArrowArray*") as c_array, \
-     arrow_c.new("struct ArrowSchema*") as c_schema:
-    c_array_ptr = int(arrow_c.cast("uintptr_t", c_array))
-    c_schema_ptr = int(arrow_c.cast("uintptr_t", c_schema))
+py_result = rarrow_to_py_array(r_result)
 
-    array._export_to_c(c_array_ptr)
-    array.type._export_to_c(c_schema_ptr)
-
-    r_result = addthree(str(c_array_ptr), str(c_schema_ptr))
-    r_result["export_to_c"](float(c_array_ptr), float(c_schema_ptr))
-
-    py_result = pyarrow.Array._import_from_c(c_array_ptr, c_schema_ptr)
-print("RESULT", py_result)
+# r_result["export_to_c"](float(c_array_ptr), float(c_schema_ptr))
+# py_result = pyarrow.Array._import_from_c(c_array_ptr, c_schema_ptr)
+print("RESULT", type(py_result), py_result)
