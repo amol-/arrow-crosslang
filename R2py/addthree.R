@@ -10,5 +10,5 @@ addthree_cdata <- function(array_ptr_s, schema_ptr_s) {
 }
 
 addthree <- function(arr) {
-  return(arr + 3)
+  return(arr + 3L)
 }
